@@ -7,9 +7,7 @@ const botonTierra = document.getElementById("boton-tierra");
 const botonReiniciar = document.getElementById("boton-reiniciar");
 
 const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
-const inputHipodoge = document.getElementById("hipodoge");
-const inputCapipepo = document.getElementById("capipepo");
-const inputRatigueya = document.getElementById("ratigueya");
+
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
@@ -28,6 +26,9 @@ let ataqueEnemigo;
 let opcionesDeMokepones;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+let inputHipodoge; 
+let inputCapipepo;
+let inputRatigueya;
 
 class Mokepon {
   constructor (nombre, foto, vida) {
@@ -84,6 +85,10 @@ function iniciarJuego() {
       />
     </label>`
     contenedorTarjetas.innerHTML += opcionesDeMokepones
+
+    inputHipodoge = document.getElementById("Hipodoge")
+    inputCapipepo = document.getElementById("Capipepo")
+    inputRatigueya = document.getElementById("Ratigueya")
 
   })
 
