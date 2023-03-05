@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap");
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #041562;
 }
 
@@ -15,7 +15,7 @@ body {
 .titulo {
   color: white;
   font-size: 32px;
-  font-family: 'Fredoka One', cursive;
+  font-family: "Fredoka One", cursive;
 }
 
 .subtitulo {
@@ -23,7 +23,7 @@ body {
   font-size: 20px;
 }
 
-.tarjetas {
+.tarjetas, .tarjetas-ataques {
   display: flex;
   gap: 10px;
 }
@@ -31,7 +31,7 @@ body {
 .tarjeta-de-mokepon {
   width: 180px;
   height: 100px;
-  background: #11468F;
+  background: #11468f;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 20px;
@@ -52,7 +52,7 @@ body {
   background: transparent;
   border: 2px solid white;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: 30px;
 }
 
@@ -67,19 +67,19 @@ input {
 }
 
 .boton-de-ataque {
-  background-color: #11468F;
+  background-color: #11468f;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 20px;
   border-color: transparent;
   width: 180px;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 #mensajes {
   width: 280px;
-  background: #EEEEEE;
+  background: #eeeeee;
   padding: 20px;
   margin-top: 20px;
   border-radius: 20px;
@@ -90,12 +90,23 @@ input {
 
 #boton-reiniciar {
   border: none;
-  color: #11468F;
-  font-family: 'Poppins', sans-serif;
+  color: #11468f;
+  font-family: "Poppins", sans-serif;
 }
 
 .ataques {
-    display: grid;
-    grid-template-columns: 100px 100px;
-    
+  display: grid;
+  grid-template-columns: 100px 100px;
+}
+
+.ataques-jugador, .ataques-enemigo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 360px) {
+    .tarjetas, .tarjetas-ataques {
+        flex-direction: column;
+    }
 }
