@@ -2,10 +2,27 @@ const express = require("express");
 
 const app = express();
 
-app.get("/", (req, res) => {
-    res.send("hola")
-})
+const jugadores = [];
+
+
+class Jugador {
+    constructor (id) {
+        this.id = id
+    }
+}
+
+app.get("/unirse", (req, res) => {
+    const id = `${Math.random()}`
+    const jugador = new Jugador(id)
+    jugadores.push(jugador)
+
+    res.setHeader('Access-Control-Allow-Origin', "*")
+
+    res.send(id)
+});
+
+
 
 app.listen(8080, () => {
-    console.log("servidor funcionando");
-})
+  console.log("servidor funcionando");
+});
