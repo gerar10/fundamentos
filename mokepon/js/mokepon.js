@@ -18,9 +18,8 @@ const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
-const sectionVerMapa = document.getElementById("ver-mapa")
-const mapa = document.getElementById("mapa")
-
+const sectionVerMapa = document.getElementById('ver-mapa')
+const mapa = document.getElementById('mapa')
 
 let mokepones = []
 let ataqueJugador =[]
@@ -69,28 +68,28 @@ let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attac
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.webp', 5)
 
 hipodoge.ataques.push(
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '🔥', id: 'boton-fuego' },
-    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
 )
 
 capipepo.ataques.push(
-    { nombre: '🌱', id: 'boton-tierra' },
-    { nombre: '🌱', id: 'boton-tierra' },
-    { nombre: '🌱', id: 'boton-tierra' },
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '🔥', id: 'boton-fuego' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
     
 )
 
 ratigueya.ataques.push(
-    { nombre: '🔥', id: 'boton-fuego' },
-    { nombre: '🔥', id: 'boton-fuego' },
-    { nombre: '🔥', id: 'boton-fuego' }, 
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' }, 
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
 )
 
 mokepones.push(hipodoge,capipepo,ratigueya)
@@ -118,10 +117,6 @@ function iniciarJuego() {
     
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
-    
-    
-
-    
     botonReiniciar.addEventListener('click', reiniciarJuego)
 }
 
@@ -131,10 +126,8 @@ function seleccionarMascotaJugador() {
     
     
     //sectionSeleccionarAtaque.style.display = 'flex'
-    sectionVerMapa.style.display = "flex"
-    intervalo = setInterval(pintarPersonaje, 50)
-    
-    
+    sectionVerMapa.style.display = 'flex'
+    iniciarMapa()
     
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id
@@ -181,12 +174,12 @@ function mostrarAtaques(ataques) {
 function secuenciaAtaque() {
     botones.forEach((boton) => {
         boton.addEventListener('click', (e) => {
-            if (e.target.textContent === '🔥') {
+            if (e.target.textContent === 'ðŸ”¥') {
                 ataqueJugador.push('FUEGO')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
                 boton.disabled = true   
-            } else if (e.target.textContent === '💧') {
+            } else if (e.target.textContent === 'ðŸ’§') {
                 ataqueJugador.push('AGUA')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
@@ -315,7 +308,7 @@ function aleatorio(min, max) {
 function pintarPersonaje() {
     capipepo.x = capipepo.x + capipepo.velocidadX
     capipepo.y = capipepo.y + capipepo.velocidadY
-    lienzo.clearRect(0,0, mapa.width, mapa.height)
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(
         capipepo.mapaFoto,
         capipepo.x,
@@ -324,7 +317,6 @@ function pintarPersonaje() {
         capipepo.alto
     )
 }
-
 
 function moverDerecha() {
     capipepo.velocidadX = 5
@@ -342,10 +334,36 @@ function moverArriba() {
     capipepo.velocidadY = -5
 }
 
-function deteterMovimiento() {
+function detenerMovimiento() {
     capipepo.velocidadX = 0
     capipepo.velocidadY = 0
 }
 
+function sePresionoUnaTecla(event) {
+    switch (event.key) {
+        case 'ArrowUp':
+            moverArriba()
+            break
+        case 'ArrowDown':
+            moverAbajo()
+            break
+        case 'ArrowLeft':
+            moverIzquierda()
+            break
+        case 'ArrowRight':
+            moverDerecha()
+            break
+        default:
+            break
+    }
+}
+
+function iniciarMapa() {
+    intervalo = setInterval(pintarPersonaje, 50)
+    
+    window.addEventListener('keydown', sePresionoUnaTecla)
+
+    window.addEventListener('keyup', detenerMovimiento)
+}
 
 window.addEventListener('load', iniciarJuego)
