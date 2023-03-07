@@ -95,6 +95,14 @@ hipodoge.ataques.push(
     { nombre: 'ðŸŒ±', id: 'boton-tierra' },
 )
 
+hipodogeEnemigo.ataques.push(
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+)
+
 capipepo.ataques.push(
     { nombre: 'ðŸŒ±', id: 'boton-tierra' },
     { nombre: 'ðŸŒ±', id: 'boton-tierra' },
@@ -104,7 +112,24 @@ capipepo.ataques.push(
     
 )
 
+capipepoEnemigo.ataques.push(
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
+    
+)
+
 ratigueya.ataques.push(
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' },
+    { nombre: 'ðŸ”¥', id: 'boton-fuego' }, 
+    { nombre: 'ðŸ’§', id: 'boton-agua' },
+    { nombre: 'ðŸŒ±', id: 'boton-tierra' },
+)
+
+ratigueyaEnemigo.ataques.push(
     { nombre: 'ðŸ”¥', id: 'boton-fuego' },
     { nombre: 'ðŸ”¥', id: 'boton-fuego' },
     { nombre: 'ðŸ”¥', id: 'boton-fuego' }, 
@@ -145,9 +170,6 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = 'none'
     
     
-    //sectionSeleccionarAtaque.style.display = 'flex'
-    
-    
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id
         mascotaJugador = inputHipodoge.id
@@ -164,7 +186,7 @@ function seleccionarMascotaJugador() {
     extraerAtaques(mascotaJugador)
     sectionVerMapa.style.display = 'flex'
     iniciarMapa()
-    seleccionarMascotaEnemigo()
+    
 }
 
 function extraerAtaques(mascotaJugador) {
@@ -228,6 +250,7 @@ function seleccionarMascotaEnemigo() {
 
 
 function ataqueAleatorioEnemigo() {
+
     let ataqueAleatorio = aleatorio(0,ataquesMokeponEnemigo.length -1)
     
     if (ataqueAleatorio == 0 || ataqueAleatorio ==1) {
@@ -432,7 +455,10 @@ function revisarColision(enemigo) {
         return
     }
     detenerMovimiento()
-    alert("hay colision " + enemigo.nombre)
+    clearInterval(intervalo)
+    sectionSeleccionarAtaque.style.display = 'flex'
+    sectionVerMapa.style.display = "none"
+    seleccionarMascotaEnemigo(enemigo)
 }
 
 window.addEventListener('load', iniciarJuego)
